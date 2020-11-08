@@ -1,9 +1,14 @@
+import sys
+sys.path.insert(0, './deep_sort_pytorch')
+sys.path.insert(0, './yolov5')
+
+
 from yolov5.utils.datasets import LoadImages, LoadStreams
 from yolov5.utils.general import (
     check_img_size, non_max_suppression, apply_classifier, scale_coords, xyxy2xywh, plot_one_box, strip_optimizer)
 from yolov5.utils.torch_utils import select_device, load_classifier, time_synchronized
-from deep_sort.utils.parser import get_config
-from deep_sort.deep_sort import DeepSort
+from deep_sort_pytorch.utils.parser import get_config
+from deep_sort_pytorch.deep_sort import DeepSort
 import argparse
 import os
 import platform
@@ -14,8 +19,8 @@ import cv2
 import torch
 import torch.backends.cudnn as cudnn
 # https://github.com/pytorch/pytorch/issues/3678
-import sys
-sys.path.insert(0, './yolov5')
+
+
 
 
 palette = (2 ** 11 - 1, 2 ** 15 - 1, 2 ** 20 - 1)
@@ -213,7 +218,7 @@ def detect(opt, save_img=False):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--weights', type=str, default='yolov5/weights/yolov5x.pt', help='model.pt path')
+    parser.add_argument('--weights', type=str, default='yolov5/weights/yolov5s.pt', help='model.pt path')
     parser.add_argument('--source', type=str, default='inference/images', help='source')  # file/folder, 0 for webcam
     parser.add_argument('--output', type=str, default='inference/output', help='output folder')  # output folder
     parser.add_argument('--img-size', type=int, default=640, help='inference size (pixels)')
@@ -227,7 +232,7 @@ if __name__ == '__main__':
     parser.add_argument('--classes', nargs='+', type=int, default=[0], help='filter by class')
     parser.add_argument('--agnostic-nms', action='store_true', help='class-agnostic NMS')
     parser.add_argument('--augment', action='store_true', help='augmented inference')
-    parser.add_argument("--config_deepsort", type=str, default="deep_sort/configs/deep_sort.yaml")
+    parser.add_argument("--config_deepsort", type=str, default="deep_sort_pytorch/configs/deep_sort.yaml")
     args = parser.parse_args()
     args.img_size = check_img_size(args.img_size)
     print(args)

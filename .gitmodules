@@ -1,0 +1,6 @@
+[submodule "yolov5"]
+	path = yolov5
+	url = https://github.com/ultralytics/yolov5
+[submodule "deep_sort_pytorch"]
+	path = deep_sort_pytorch
+	url = https://github.com/ZQPei/deep_sort_pytorch
